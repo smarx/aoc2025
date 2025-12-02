@@ -14,7 +14,7 @@ variable counter
     begin
         read-line-to-buffer
     while
-        \ read a length-prefixed string into the buffer
+        \ grab the first character of the string
         line-buffer c@
         
         \ check first character, push -1 for L and +1 for R (direction of spin)
