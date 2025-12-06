@@ -41,11 +41,11 @@ variable grid-length
 : check ( nc width pos -- nc' width )
    grid + c@ '@' = if swap 1+ swap then ;
 
-: remove-accessible ( width -- removed )
-   0 swap ( removed width )
+: count-accessible ( width -- count )
+   0 swap ( count width )
    grid-length @ 0 ?do
       grid i + c@ '@' = if
-         0 swap ( removed nc width )
+         0 swap ( count nc width )
          dup i swap - 1- check
          dup i swap - check
          dup i swap - 1+ check
@@ -55,15 +55,15 @@ variable grid-length
          dup i + check
          dup i + 1+ check
          swap 4 < if
-            ( removed width )
+            ( count width )
             swap 1+ swap
          then
       then
-   loop drop ( removed ) ;
+   loop drop ( count ) ;
 
 : main
    fill-grid
-   remove-accessible ;
+   count-accessible ;
 
 main
 ." Part 1: " . cr
